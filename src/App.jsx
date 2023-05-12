@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { BookForm } from './components/bookForm'
-import { ListDisplay } from './components/listDisplay'
+import { Book } from './components/Book'
+import { Books } from './Model'
 function App() {
   
 
   return (
     <>
-    <ListDisplay/>
+    <Book prop={Books[0]}></Book>
      <BookForm/>
     </>
   )
