@@ -3,7 +3,8 @@ export const Book = ({prop}) => {
 
 //Sort via rating, credit ståle.
 //Kankje table.
-
+// make a table of books without description, or just a part of it. Then link individual books to their own page
+//with full description.
 
 
 return <li id={prop.id}>
