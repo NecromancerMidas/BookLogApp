@@ -1,22 +1,25 @@
 import Rating from "react-rating";
-export const Book = ({prop}) => {
-
+import {Link} from "react-router-dom";
+export const BookRow = ({prop}) => {
+const click = () => {
+    console.log("clickk");
+}
 //Sort via rating, credit ståle.
 //Kankje table.
 // make a table of books without description, or just a part of it. Then link individual books to their own page
 //with full description.
+let id = prop.id;
 
-
-return <li id={prop.id}>
-<h1>{prop.Title}</h1>
-<h2>{prop.SubTitle}</h2>
-<p>{prop.Author}</p>
-<p>{prop.Publisher}</p>
-<p>{prop.Genre}</p>
-<p>{prop.Subject}</p>
-<p>{prop.Description}</p>
-<Rating quiet readonly initialRating={prop.Rating}></Rating>
-</li>
+return <tr id={prop.id}>
+<td><Link to={`/BookArticle/${id}`}>{prop.Title}</Link></td>
+<td>{prop.SubTitle}</td>
+<td>{prop.Author}</td>
+<td>{prop.Publisher}</td>
+<td>{prop.Genre}</td>
+<td>{prop.Subject}</td>
+{/* <td>{prop.Description}</td> */}
+<td>{prop.Rating}</td>
+</tr>
 /* <ul><Book key={Book.id} 
 title={Book.Title} 
 SubTitle={Book.SubTitle} 

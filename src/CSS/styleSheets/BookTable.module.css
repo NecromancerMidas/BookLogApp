@@ -1,0 +1,11 @@
+.BookTable , th,td{
+    border: 1px double black;
+    padding: 10px;
+    border-collapse: collapse;
+  }
+  .BookTable th{
+    background-color: var(--SecondaryColor);
+  }
+  .Booktable td:last-child{
+    text-align:center;
+  }
