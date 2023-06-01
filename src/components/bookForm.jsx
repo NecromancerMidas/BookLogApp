@@ -1,8 +1,11 @@
 import Rating from "react-rating"
-import { useState } from "react"
+import { useEffect, useState ,useContext} from "react"
 import styles from '../CSS/styleSheets/BookForm.module.css'
-
+import axios from "axios"
+import { render } from "react-dom"
+import { BooksContext,BooksProvider } from "./BooksContext"
 export const BookForm = () => {
+const {books, fetchData} = useContext(BooksContext)
 const [values, setValues] = useState({Title: '' ,subTitle: '', Author: '', 
 Publisher: '', Genre: '', Subject: '', Description:'', Rating:3,Image: null})
 const handleInputChange = (e) => {
@@ -12,12 +15,27 @@ const handleInputChange = (e) => {
     setValues({...values, 
         [e.target.id]:e.target.value});
 }
+   
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(values);
-        console.log(values.Image);
+        const book = {
+        Title:form.Title.value,
+        SubTitle:form.subTitle.value,
+        Author: form.Author.value,
+        Publisher: form.Publisher.value,
+        Genre: form.Genre.value,
+        Subject: form.Subject.value,
+        Description: form.Description.value,
+        /*formData.append("Image", form.Image.value)*/
+        Rating: form.Rating.value,
     }
-return  <form className={styles.form} onSubmit={handleSubmit}>
+        console.log(values);
+        console.log(form.Title.value)
+        console.log(values.Image);
+        console.log(book.values);
+        axios.post('http://localhost:5199/books',book,);
+    }
+return  <form id="form" className={styles.form} onSubmit={handleSubmit}>
 <h1>Add Book</h1>
 <label htmlFor="Title">Title</label>
 <input type="text" id="Title" className={styles.textInput} placeholder="Meditations" onChange={handleInputChange}></input>

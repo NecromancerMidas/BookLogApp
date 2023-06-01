@@ -6,9 +6,11 @@ import { Books } from './Model'
 import './CSS/styleSheets/App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ShowAllBooks } from './components/ShowAllBooks'
+import { BooksProvider } from './components/BooksContext'
 function App() {
   
   return (
+    <BooksProvider>
 <Router>
   <Routes>
     <Route path="/" element={<Home/>}/>
@@ -17,6 +19,7 @@ function App() {
     <Route path="/ShowAllBooks" element={<ShowAllBooks/>}></Route>
   </Routes>
 </Router>
+</BooksProvider>
 
   );
  

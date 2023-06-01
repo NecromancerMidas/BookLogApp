@@ -1,3 +1,6 @@
+.BookTable{
+  width:70%;
+}
 .BookTable , th,td{
     border: 1px double black;
     padding: 10px;
@@ -6,6 +9,11 @@
   .BookTable th{
     background-color: var(--SecondaryColor);
   }
-  .Booktable td:last-child{
+  .Booktable tr,td {
     text-align:center;
+  }
+  .BookTable tr td textarea{
+    width:1048px;
+    height: 174px;
+    resize: none;
   }
