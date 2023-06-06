@@ -10,7 +10,7 @@ import { useEffect,useState } from 'react';
 
 export const ShowAllBooks = () => {
     async function GetBooks() {
-        return axios.get('http://localhost:5199/books')
+        return axios.get('http://localhost:5199/api/books')
         .then(response => {
             return response.data
         }).catch( error => {

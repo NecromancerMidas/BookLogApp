@@ -3,7 +3,7 @@ import React, {useState,createContext,useEffect,useContext} from "react";
 
 export const BooksContext = createContext()
 async function GetBooks() {
-    return axios.get('http://localhost:5199/books')
+    return axios.get('http://localhost:5199/api/books')
     .then(response => {
         return response.data
     }).catch( error => {

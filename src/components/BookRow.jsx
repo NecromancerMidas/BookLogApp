@@ -31,7 +31,7 @@ const book = {
     Rating: TableRating.value,
 }
 console.log(book)
-axios.put(`http://localhost:5199/books/${prop.id}`,book)
+axios.put(`http://localhost:5199/api/Books/${prop.id}`,book)
 window.location.reload();
 
 }
