@@ -13,11 +13,15 @@ const handleInputChange = (e) => {
         setValues({...values, [e.target.id]:e.target.files[0]})
     };
     setValues({...values, 
-        [e.target.id]:e.target.value});
+        [e.target.id]:e.target.value});q
 }
    
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+      const imageToSend = new FormData();
+      imageToSend.append("image",form.Image.files[0]);
+      console.log(imageToSend)
+        const imagePath = await axios.post("http://localhost:5199/api/Books/upload", imageToSend, {headers: {'Content-Type': 'multipart/form-data'}});
         const book = {
         Title:form.Title.value,
         SubTitle:form.subTitle.value,
@@ -26,14 +30,14 @@ const handleInputChange = (e) => {
         Genre: form.Genre.value,
         Subject: form.Subject.value,
         Description: form.Description.value,
-        /*formData.append("Image", form.Image.value)*/
+        Image : imagePath.data.path,
         Rating: form.Rating.value,
     }
         console.log(values);
         console.log(form.Title.value)
         console.log(values.Image);
         console.log(book.values);
-        axios.post('http://localhost:5199/books',book,);
+        axios.post('http://localhost:5199/api/Books',book,);
     }
 return  <form id="form" className={styles.form} onSubmit={handleSubmit}>
 <h1>Add Book</h1>

@@ -1,11 +1,19 @@
 import Rating from "react-rating";
 import {Link} from "react-router-dom";
 import  axios  from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { serverURL } from "../config";
 export const BookRow = ({prop}) => {
 const deleteBook = () => {
-    axios.delete(`http://localhost:5199/books/${prop.id}`);
+    axios.delete(`http://localhost:5199/api/Books/${prop.id}`);
 }
+
+useEffect(() => {
+if(image) {
+    
+}
+
+})
 //Sort via rating, credit ståle.
 //Kankje table.
 // make a table of books without description, or just a part of it. Then link individual books to their own page
@@ -13,38 +21,52 @@ const deleteBook = () => {
 let id = prop.id;
 const [editMode, setEditMode] = useState(false);
 const changeEditMode = () => {
-let toSwapTo = !editMode
 if (editMode === true){
+    console.log(editMode)
     handleSubmit();
+
 }
-setEditMode(toSwapTo); 
+setEditMode(e => !e); 
 }
-const handleSubmit = () => {
+const handleSubmit = async () => {
+    const imageToSend = new FormData();
+    imageToSend.append("image",image);
+      const imagePath = await axios.post("http://localhost:5199/api/Books/upload", imageToSend, {headers: {'Content-Type': 'multipart/form-data'}});
 const book = {
-    Title: TableTitle.value,
-    SubTitle:TableSubTitle.value,
-    Author: TableAuthor.value,
-    Publisher: TablePublisher.value,
-    Genre: TableGenre.value,
-    Subject: TableSubject.value,
-    Description: TableDescription.value,
-    Rating: TableRating.value,
+    Title: title,
+    SubTitle: subTitle,
+    Author: author,
+    Publisher: publisher,
+    Genre: genre,
+    Subject: subject,
+    Description: description,
+    Rating: rating,
+    Image : imagePath.data.path,
 }
 console.log(book)
-axios.put(`http://localhost:5199/api/Books/${prop.id}`,book)
-window.location.reload();
+
+await axios.put(`http://localhost:5199/api/Books/${prop.id}`,book)
 
 }
-
+const [title, setTitle] = useState(prop.title);
+const [subTitle, setSubTitle] = useState(prop.subTitle);
+const [author, setAuthor] = useState(prop.author);
+const [publisher, setPublisher] = useState(prop.publisher);
+const [genre, setGenre] = useState(prop.genre);
+const [subject, setSubject] = useState(prop.subject);
+const [description, setDescription] = useState(prop.description);
+const [rating, setRating] = useState(prop.rating);
+const [image, setImage] = useState(prop.image);
+// you are fucking retarded.
+// Edit: YOU ARE REALLY RETARDED. Use USESTATES!
 return <><tr id={prop.id}>
-<td>{editMode ? <input  id="TableTitle" type="text" defaultValue={prop.title}></input> : <Link to={`/BookArticle/${id}`}>{prop.title}</Link>}</td>
-<td>{editMode ? <input  id="TableSubTitle"  type="text" defaultValue={prop.subTitle}></input>: prop.subTitle}</td>
-<td >{editMode ? <input id="TableAuthor" type="text" defaultValue={prop.author}></input> : prop.author}</td>
-<td >{editMode ? <input id="TablePublisher" type="text" defaultValue={prop.publisher}></input> : prop.publisher}</td>
-<td >{editMode ? <input  id="TableGenre" type="text" defaultValue={prop.genre}></input> : prop.genre}</td>
-<td >{editMode ? <input  id="TableSubject" type="text" defaultValue={prop.subject}></input> : prop.subject}</td>
-{/* <td>{prop.Description}</td> */}
-<td >{editMode ? <input id="TableRating" type="number" defaultValue={prop.rating}></input> : prop.rating}</td>
+    <td>{editMode ? <input id={`TableTitle ${prop.id}`} onChange={e => setTitle(e.target.value)} type="text" defaultValue={title}></input> : <Link to={`/BookArticle/${id}`}>{title}</Link>}</td>
+<td>{editMode ? <input id={`TableSubTitle ${prop.id}`} onChange={e => setSubTitle(e.target.value)} type="text" defaultValue={subTitle}></input>: subTitle}</td>
+<td>{editMode ? <input id={`TableAuthor ${prop.id}`} onChange={e => setAuthor(e.target.value)} type="text" defaultValue={author}></input> : author}</td>
+<td>{editMode ? <input id={`TablePublisher ${prop.id}`} onChange={e => setPublisher(e.target.value)} type="text" defaultValue={publisher}></input> : publisher}</td>
+<td>{editMode ? <input id={`TableGenre ${prop.id}`} onChange={e => setGenre(e.target.value)} type="text" defaultValue={genre}></input> : genre}</td>
+<td>{editMode ? <input id={`TableSubject ${prop.id}`} onChange={e => setSubject(e.target.value)} type="text" defaultValue={subject}></input> : subject}</td>
+<td>{editMode ? <input id={`TableRating ${prop.id}`} onChange={e => setRating(e.target.value)} type="number" defaultValue={rating}></input> : rating}</td>
 <td><button onClick={changeEditMode}>Edit</button></td>
 <td><button onClick={deleteBook}>Delete</button></td>
 </tr>
@@ -52,9 +74,15 @@ return <><tr id={prop.id}>
         <th colSpan={"9"}>Description</th>
     </tr><tr>
             <td colSpan={"9"}>
-                <textarea id="TableDescription" type="text" defaultValue={prop.description}></textarea>
+                <textarea id="TableDescription" onChange={e => setDescription(e.target.value)} type="text" defaultValue={description}></textarea>
             </td>
         </tr></> : null}
+        {editMode ? <><tr>
+            <th colSpan={"9"}>Image</th></tr>
+            <tr><td colSpan={"9"}>
+                <img src={`${serverURL}${prop.image}`} style={{width:"200px",height:"307.986px"}}/>
+                <input type="file" accept=".jpg,.png,.bmp" onChange={e => setImage(e.target.files[0])}></input></td></tr>
+            </> : null}
 </>
 /* <ul><Book key={Book.id} 
 title={Book.Title} 

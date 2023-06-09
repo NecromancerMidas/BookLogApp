@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { BooksContext, BooksProvider } from "./BooksContext.jsx";
 import React,{useContext} from "react"
 import axios from "axios";
+import { serverURL } from "../config";
 
 export const BookArticle = ({bookprop}) => {
 let {id : routeId} = useParams() || {};
@@ -26,7 +27,7 @@ return<>
     <h2 className="subtitle">{book.subTitle}</h2>
   </div>
   <div className="container2">
-  <img src={medationsImage} className="image"/>
+  <img src={`${serverURL}${book.image}`} className="image"/>
   <div className="container3">
   <div className="row">
   <div>
