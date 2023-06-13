@@ -13,7 +13,7 @@ const handleInputChange = (e) => {
         setValues({...values, [e.target.id]:e.target.files[0]})
     };
     setValues({...values, 
-        [e.target.id]:e.target.value});q
+        [e.target.id]:e.target.value});
 }
    
     const handleSubmit = async (e) => {
@@ -39,7 +39,7 @@ const handleInputChange = (e) => {
         console.log(book.values);
         axios.post('http://localhost:5199/api/Books',book,);
     }
-return  <form id="form" className={styles.form} onSubmit={handleSubmit}>
+return <div> <form id="form" className={styles.form} onSubmit={handleSubmit}>
 <h1>Add Book</h1>
 <label htmlFor="Title">Title</label>
 <input type="text" id="Title" className={styles.textInput} placeholder="Meditations" onChange={handleInputChange}></input>
@@ -54,13 +54,14 @@ return  <form id="form" className={styles.form} onSubmit={handleSubmit}>
 <label htmlFor="Subject">Subject</label>
 <input type="text" id="Subject" className={styles.textInput} placeholder="Stoicism" onChange={handleInputChange}></input>
 <label htmlFor="Description">Description</label>
-<textarea type="text" id="Description" className={styles.textInput} placeholder="Good fucking book." onChange={handleInputChange}></textarea>
+<textarea type="text" id="Description" className={styles.textAreaInput} placeholder="Good fucking book." onChange={handleInputChange}></textarea>
 <label htmlFor="Rating">Rating out of 5</label>
 <input id="Rating" type="number" max="5" min="0" value={values.Rating} className={styles.numberInput} onChange={handleInputChange}></input>
 <label htmlFor="Image">Image</label>
 <input id="Image" type="file" className={styles.fileInput} onChange={handleInputChange} accept=".jpg,.png,.bmp"></input>
 <input type="submit" className={styles.submitButton}></input>
 </form>
+</div>
 ;
 
 

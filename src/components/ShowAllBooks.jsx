@@ -1,8 +1,9 @@
 import {Books} from '../Model';
-import { BookArticle } from './BookArticle';
+import  BookArticle  from './BookArticle';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect,useState } from 'react';
+import styles from '../CSS/styleSheets/ShowAllBooks.module.css'
 
 
 
@@ -34,11 +35,11 @@ export const ShowAllBooks = () => {
 
     },[books])
 
-return <>
+return <div className={styles.ShowAllBooksContainer}>
 {!books ?  <div>Loading...</div> : 
 books.map((prop=> (<BookArticle key={prop.id} bookprop={prop}></BookArticle>)))}
 <Link to="/">Home</Link>
-</>
+</div>
 
 
 

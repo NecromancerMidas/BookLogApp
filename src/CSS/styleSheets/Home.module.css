@@ -1,0 +1,24 @@
+nav {
+display:flex;
+flex-direction: row;
+background-color: var(--QuaternionColor);
+border-bottom: 3px solid var(--TetrinaryColor);
+justify-content: space-evenly;
+align-items: center;
+height:8vh;
+
+}
+nav a button {
+    border: solid   2px var(--TetrinaryColor);
+    background-color: var(--SecondaryColor);
+    border-radius: 0.6rem;
+    transition: background-color 0.3s ease;
+    width:110%;
+    height:2.8vh;
+}
+nav a button:hover {
+border:2px solid var(--SecondaryColor);
+background-color: var(--TetrinaryColor);
+color: var(--QuaternionColor);
+cursor: pointer;
+}

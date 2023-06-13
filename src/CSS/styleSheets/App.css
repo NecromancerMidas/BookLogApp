@@ -1,7 +1,28 @@
 :root{
---PrimaryColor: white;
---SecondaryColor: grey;
+/* --PrimaryColor: rgb(75, 71, 71);
+--SecondaryColor: rgb(202, 200, 200);
 --TetrinaryColor: black;
+--QuaternionColor:rgb(146, 146, 146);
+--QuintupleColor: rgb(97, 97, 97); */
+--PrimaryColor: rgb(39 39 39);
+    --SecondaryColor: rgb(79 23 79);
+    --TetrinaryColor: #0c0c0c;
+    --QuaternionColor: rgb(174 130 213);
+    --QuintupleColor: rgb(139 97 146);
 --Font:"Inter";
+background-color: var(--PrimaryColor);
+}
+html body{
 
+    margin:0;
+    padding:0;
+   min-height:100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+#root{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }

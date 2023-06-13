@@ -1,0 +1,6 @@
+.BookArticleWrapperDiv{
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    padding: 0;
+  }

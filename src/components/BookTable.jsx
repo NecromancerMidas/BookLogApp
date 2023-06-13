@@ -7,7 +7,7 @@ console.log(styles.BookTable);
 export const BookTable = () => {
 const {books,fetchData} = useContext(BooksContext);
 if (!books) return <div>loading...</div>
-return (<table className={styles.BookTable}>
+return (<div className={styles.BookTableDiv}><table className={styles.BookTable}>
 <thead>
 <tr>
     <th>Title</th>
@@ -31,6 +31,6 @@ return (<table className={styles.BookTable}>
 
 
 </table>
-
+</div>
 )
 }

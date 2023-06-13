@@ -31,7 +31,10 @@ setEditMode(e => !e);
 const handleSubmit = async () => {
     const imageToSend = new FormData();
     imageToSend.append("image",image);
-      const imagePath = await axios.post("http://localhost:5199/api/Books/upload", imageToSend, {headers: {'Content-Type': 'multipart/form-data'}});
+    let imagePath;
+    if (typeof image !== 'string'){
+        imagePath = await axios.post("http://localhost:5199/api/Books/upload", imageToSend, {headers: {'Content-Type': 'multipart/form-data'}});
+    }
 const book = {
     Title: title,
     SubTitle: subTitle,
@@ -41,7 +44,7 @@ const book = {
     Subject: subject,
     Description: description,
     Rating: rating,
-    Image : imagePath.data.path,
+    Image : imagePath ?  imagePath.data.path : prop.image,
 }
 console.log(book)
 

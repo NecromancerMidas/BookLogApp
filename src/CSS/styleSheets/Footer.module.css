@@ -1,0 +1,11 @@
+footer {
+
+height:14vh;
+width:100%;
+display: flex;
+justify-content:space-evenly;
+background-color: var(--SecondaryColor);
+margin-top: auto;
+align-items: center;
+border-top: 3px var(--TetrinaryColor) solid;
+}

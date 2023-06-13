@@ -1,5 +1,12 @@
 .BookTable{
   width:70%;
+  border:3px solid black !important;
+}
+.BookTableDiv{
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh;
+  padding: 0;
 }
 .BookTable , th,td{
     border: 1px double black;
@@ -11,6 +18,7 @@
   }
   .Booktable tr,td {
     text-align:center;
+    background-color: white;
   }
   .BookTable tr td textarea{
     width:1048px;
